@@ -1,7 +1,7 @@
 import React from 'react'
 import {useAppSelector} from "../hooks/redux";
 import {useActions} from "../hooks/actions";
-import {Link} from "react-router-dom";
+
 
 const FavoritesPage = () => {
   const {favorites} = useAppSelector(state => state.github)
@@ -15,12 +15,12 @@ const FavoritesPage = () => {
       return (
           <div className='grid place-items-center'>
               <p className="text-lg my-4">No favourites.</p>
-              <Link
-                  to='/githubsearch'
+              <a
+                  href='/githubsearch'
                   className='p-4 hover:bg-gray-400 hover:text-white border-2 border-gray-700'
               >
                   To Github search...
-              </Link>
+              </a>
           </div>
       )
   }

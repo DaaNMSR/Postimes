@@ -5,20 +5,25 @@ import FavoritesPage from './pages/FavoritesPage';
 import Navigation from './components/navigation/Navigation';
 import HomePage from './pages/HomePage';
 import TodoPage from "./pages/TodoPage";
+import { Provider } from 'react-redux';
+import { store } from './store';
 
 
 
 function App() {
   return (
-    <>
-      <Navigation/>
-      <Routes>
-        <Route path='/' element = {<HomePage/>} />
-        <Route path='/todo' element = {<TodoPage/>} />
-        <Route path='/githubsearch' element = {<GithubPage/>} />
-        <Route path='/favorites' element = {<FavoritesPage/>} />
-      </Routes>
-    </>
+    <Provider store={store}>
+      <>
+        <Navigation/>
+        <Routes>
+          <Route path='/' element = {<HomePage/>} />
+          <Route path='/todo' element = {<TodoPage/>} />
+          <Route path='/githubsearch' element = {<GithubPage/>} />
+          <Route path='/favorites' element = {<FavoritesPage/>} />
+        </Routes>
+      </>
+    </Provider>
+   
   );
 }
 
