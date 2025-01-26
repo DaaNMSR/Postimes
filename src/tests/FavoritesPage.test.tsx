@@ -15,25 +15,24 @@ const getElements = () => {
   return { linkElement,paragraphEmptyFavorites,paragraphHasFavorites,listItems,removeButton }
 }
 
+const renderWithStore = (initialState: { github: { favorites: string[] } }) => {
+  
+  const testStore = configureStore({
+    reducer: {
+      github: githubReducer,
+    },
+    preloadedState: initialState,
+  });
+
+  return render(
+    <Provider store={testStore}>
+      <FavoritesPage />
+    </Provider>
+  );
+};
+
 
 describe('FavoritesPage component', () => {
-  
-  const renderWithStore = (initialState: { github: { favorites: string[] } }) => {
-
-    const testStore = configureStore({
-      reducer: {
-        github: githubReducer,
-      },
-      preloadedState: initialState,
-    });
-
-    return render(
-      <Provider store={testStore}>
-        <FavoritesPage />
-      </Provider>
-    );
-  };
-
   it('renders FavoritesPage', () => {
     renderWithStore({ github: { favorites: [] } });
 

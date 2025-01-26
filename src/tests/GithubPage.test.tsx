@@ -4,12 +4,12 @@ import GithubPage from '../pages/GithubPage';
 import { Provider } from 'react-redux';
 import { store } from '../store';
 
-
 const renderGithubPage = () => {
     render(
         <Provider store={store}>
             <GithubPage />
-        </Provider>);
+        </Provider>
+    );
 };
 
 const getElements = () => {
@@ -41,7 +41,7 @@ describe('GitHubPage', () => {
         fireEvent.change(inputElement, { target: { value: 'reactjs' } });
 
         expect(inputElement.value).toBe('reactjs');
-    })
+    });
 
     it('buttonSort toggles', () => {
         renderGithubPage();
@@ -53,8 +53,7 @@ describe('GitHubPage', () => {
         expect(buttonSort.textContent).toBe('Sort: Descending');
         fireEvent.click(buttonSort);
         expect(buttonSort.textContent).toBe('Sort: Ascending');
-    })
-
+    });
 
     it('change selectOption', () => {
         renderGithubPage();
@@ -68,7 +67,11 @@ describe('GitHubPage', () => {
 
         fireEvent.change(selectOption, { target: { value: 'watchers'} });
         expect(selectOption.value).toBe('watchers');
-    })
+    });
 })
+
+
+
+
 
 

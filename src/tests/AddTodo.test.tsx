@@ -10,13 +10,6 @@ jest.mock('../hooks/actions');
 
 const mockAddTodo = jest.fn();
 
-beforeEach(() => {
-    (useActions as jest.Mock).mockReturnValue({
-        addTodo: mockAddTodo
-    });
-});
-
-
 const renderAddTodo = () => {
     render(
         <Provider store={store}>
@@ -34,6 +27,13 @@ const getElements = () => {
 
 describe('AddTodo component', () => {
 
+    beforeEach(() => {
+        (useActions as jest.Mock).mockReturnValue({
+            addTodo: mockAddTodo
+        });
+    });
+
+    
     it('renders AddTodo', () => {
         renderAddTodo();
 
@@ -48,33 +48,21 @@ describe('AddTodo component', () => {
 
         const { inputElement } = getElements();
 
-        fireEvent.change(inputElement, {target: {value: 'Typing test'}});
+        fireEvent.change(inputElement, {target: {value: 'My todo'}});
 
-        expect(inputElement.value).toBe('Typing test');
-
+        expect(inputElement.value).toBe('My todo');
     })
 
-    it('add item by click button', () => {
+    it('add item by click button, then input should be empty', () => {
         renderAddTodo();
 
         const { inputElement,buttonElement } = getElements();
 
-        fireEvent.change(inputElement, {target: {value: 'Typing test'}});
+        fireEvent.change(inputElement, {target: {value: 'My todo'}});
         fireEvent.click(buttonElement);
 
-        expect(mockAddTodo).toHaveBeenCalledTimes(1);
-
-    })
-
-    it('click button to add item , then input should be empty', () => {
-        renderAddTodo();
-
-        const { inputElement, buttonElement } = getElements();
-
-        fireEvent.change(inputElement, {target: {value: 'New todo item'}});
-        fireEvent.click(buttonElement);
-
+        expect(mockAddTodo).toHaveBeenCalled();
         expect(inputElement.value).toBe('');
-    })
 
+    })
 });
