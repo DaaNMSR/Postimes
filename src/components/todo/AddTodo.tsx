@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import {useActions} from "../../hooks/actions";
+import Input from '../../UI/Input';
 
 const AddTodo: React.FC = () => {
     const [text, setText] = useState('')
     const {addTodo} = useActions()
-
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
@@ -16,7 +16,7 @@ const AddTodo: React.FC = () => {
 
     return (
         <form onSubmit={handleSubmit} className="flex items-center">
-            <input
+            <Input
                 className='border py-2 px-4 h-[42px] mb-2 flex-grow'
                 type="text"
                 value={text}

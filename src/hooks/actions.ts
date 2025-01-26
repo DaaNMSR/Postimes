@@ -2,10 +2,12 @@ import {useDispatch} from "react-redux";
 import {bindActionCreators} from "@reduxjs/toolkit";
 import {githubAction} from "../store/github/github.slice";
 import {todosActions} from "../store/todo/todo.slice";
+import { homeActions } from "../store/home/home.slice";
 
 const actions = {
     ...githubAction,
-    ...todosActions
+    ...todosActions,
+    ...homeActions,
 }
 
 export const useActions = () => {

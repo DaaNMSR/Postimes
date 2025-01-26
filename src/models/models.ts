@@ -134,3 +134,9 @@ export interface IOwner {
 
 export type SortOrder = 'asc' | 'desc'
 export type SortBy = 'watchers' | 'forks'
+
+export type Technologies = {
+    title: string;
+    description: string;
+    link: string;
+}[];
