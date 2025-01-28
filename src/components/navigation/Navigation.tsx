@@ -10,6 +10,7 @@ const Navigation = () => {
             <Link to='/todo' className='mr-5 hover:border-b-2 border-white'>Todo</Link>
             <Link to='/githubsearch' className='mr-5 hover:border-b-2 border-white'>Github search</Link>
             <Link to='/favorites' className='mr-5 hover:border-b-2 border-white'>Favorites</Link>
+            <Link to='/rickandmorty' className='mr-5 hover:border-b-2 border-white'>RickAndMorty</Link>
         </span>
     </nav>
   )

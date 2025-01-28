@@ -7,6 +7,7 @@ import HomePage from './pages/HomePage';
 import TodoPage from "./pages/TodoPage";
 import { Provider } from 'react-redux';
 import { store } from './store';
+import RickAndMortyPage from './pages/RickAndMortyPage';
 
 
 
@@ -20,6 +21,7 @@ function App() {
           <Route path='/todo' element = {<TodoPage/>} />
           <Route path='/githubsearch' element = {<GithubPage/>} />
           <Route path='/favorites' element = {<FavoritesPage/>} />
+          <Route path='/rickandmorty' element = {<RickAndMortyPage/>} />
         </Routes>
       </>
     </Provider>
