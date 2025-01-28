@@ -1,8 +1,9 @@
 import React from "react";
-import {Technologies} from '../models/models'
+import { Technologies } from '../models/models'
 import {  useAppSelector } from "../hooks/redux";
 import { RootState } from "../store";
 import { useActions } from "../hooks/actions";
+
 
 const technologies:Technologies = [
     {
@@ -40,26 +41,32 @@ const technologies:Technologies = [
         description: 'Webpack is a module bundler. Its main purpose is to bundle JavaScript files for usage in a browser, yet it is also capable of transforming, bundling, or packaging just about any resource or asset.',
         link: 'https://webpack.js.org/',
     },
+    {
+        title: 'Gulp',
+        description: 'Leverage gulp and the flexibility of JavaScript to automate slow, repetitive workflows and compose them into efficient build pipelines.',
+        link: 'https://gulpjs.com/',
+    },
 ]
 
 
 const HomePage: React.FC = () => {
-   
+    
     const { selectTechnology } = useActions();
     const selectedTechnology = useAppSelector((state: RootState) => state.technologies.selectedTechnology);
 
     const handleSelectTechnology = (t: typeof technologies[0]) => {
         selectTechnology(t)
     };
+
     return (
         <div className='text-center font-medium mt-6 text-[16px]'>
             <span className="text-gray-500">Learn more about</span> Technologies
-            <ul className="mt-4">
+            <ul className="flex flex-col items-center mt-4">
                 {technologies.map((t) => 
                 <li 
                     className={`
-                        mt-3 mb-3
-                        ${selectedTechnology?.title === t.title ? 'text-gray-500 cursor-default' : 'text-black hover:opacity-70  cursor-pointer'}
+                        mt-3 mb-1 border w-[200px] rounded 
+                        ${selectedTechnology?.title === t.title ? 'text-white cursor-default bg-gray-400' : 'text-black hover:opacity-70  cursor-pointer'}
                     `}
                     onClick={() => handleSelectTechnology(t)}
                     key={t.link}
