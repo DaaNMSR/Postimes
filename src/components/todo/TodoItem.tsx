@@ -10,9 +10,9 @@ interface TodoItemProps {
 
 const TodoItem: React.FC<TodoItemProps> = ({ id, text, completed }) => {
     const {toggleTodo,removeTodo} = useActions()
-
+    
     return (
-        <li className='flex justify-between'>
+        <li className='flex justify-between items-center'>
             <input
                 type="checkbox"
                 checked={completed}
@@ -21,7 +21,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ id, text, completed }) => {
             />
             <span
                 style={{ textDecoration: completed ? 'line-through' : 'none' }}
-                className='text-[17px] cursor-pointer'
+                className='text-[18px] cursor-pointer p-1 text-slate-800'
                 onClick={() => toggleTodo(id)}
             >
                 {text}
@@ -33,6 +33,5 @@ const TodoItem: React.FC<TodoItemProps> = ({ id, text, completed }) => {
             />
         </li>
     );
-};
-
+}
 export default TodoItem;
