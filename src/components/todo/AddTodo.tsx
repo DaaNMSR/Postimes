@@ -33,4 +33,4 @@ const AddTodo: React.FC = () => {
     );
 };
 
-export default AddTodo
+export default AddTodo;

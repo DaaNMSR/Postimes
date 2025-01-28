@@ -7,7 +7,7 @@ const TodoList: React.FC = () => {
     const todos = useAppSelector((state: RootState) => state.todos.items);
 
     return (
-        <ul className='mt-2'>
+        <ul className='mt-2 max-w-52'>
             {todos.map((todo) => (
                 <TodoItem key={todo.id} {...todo} />
             ))}
@@ -16,4 +16,3 @@ const TodoList: React.FC = () => {
 };
 
 export default TodoList;
-

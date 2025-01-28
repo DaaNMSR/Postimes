@@ -69,9 +69,3 @@ describe('GitHubPage', () => {
         expect(selectOption.value).toBe('watchers');
     });
 })
-
-
-
-
-
-

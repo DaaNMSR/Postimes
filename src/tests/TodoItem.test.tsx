@@ -72,10 +72,3 @@ describe('TodoItem', () => {
         expect(mockRemoveTodo).toHaveBeenCalledTimes(1);
     })
 });
-
-
-
-
-
-
-

@@ -50,7 +50,7 @@ const technologies:Technologies = [
 
 
 const HomePage: React.FC = () => {
-    
+
     const { selectTechnology } = useActions();
     const selectedTechnology = useAppSelector((state: RootState) => state.technologies.selectedTechnology);
 
@@ -93,12 +93,3 @@ const HomePage: React.FC = () => {
 };
 
 export default HomePage;
-
-
-
-
-
-
-
-
-
