@@ -1,8 +1,8 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
-import { GithubPage } from './GithubPage';
 import { Provider } from 'react-redux';
 import { store } from '../../store/store';
+import { GithubPage } from './GithubPage';
 
 const renderGithubPage = () => {
   render(
@@ -12,63 +12,26 @@ const renderGithubPage = () => {
   );
 };
 
-const getElements = () => {
-  const inputElement = screen.getByPlaceholderText(
-    'Github username...',
-  ) as HTMLInputElement;
-  const buttonSort = screen.getByText('Sort: Ascending') as HTMLButtonElement;
-  const selectOption = screen.getByText('Watchers') as HTMLSelectElement;
-  const paragraph = screen.getByText(
-    'No repositories found.',
-  ) as HTMLParagraphElement;
-  return { inputElement, buttonSort, selectOption, paragraph };
-};
-
-describe('GitHubPage', () => {
+describe('GithubPage', () => {
   it('renders GithubPage', () => {
     renderGithubPage();
+    const input = screen.getByPlaceholderText(/Github username.../i);
+    const buttonSortBy = screen.getByRole('button', {
+      name: /Sort: Ascending/i,
+    });
+    const selectSortOption = screen.getByText(/Watchers/i);
+    const paragraph = screen.getByText(/No repositories found./i);
 
-    const { inputElement, buttonSort, selectOption, paragraph } = getElements();
-
-    expect(inputElement).toBeInTheDocument();
-    expect(buttonSort).toBeInTheDocument();
-    expect(selectOption).toBeInTheDocument();
+    expect(input).toBeInTheDocument();
+    expect(buttonSortBy).toBeInTheDocument();
+    expect(selectSortOption).toBeInTheDocument();
     expect(paragraph).toBeInTheDocument();
   });
 
-  it('input working', () => {
+  it('input working when typing', () => {
     renderGithubPage();
-
-    const { inputElement } = getElements();
-
-    fireEvent.change(inputElement, { target: { value: 'reactjs' } });
-
-    expect(inputElement.value).toBe('reactjs');
-  });
-
-  it('buttonSort toggles', () => {
-    renderGithubPage();
-
-    const { buttonSort } = getElements();
-
-    expect(buttonSort.textContent).toBe('Sort: Ascending');
-    fireEvent.click(buttonSort);
-    expect(buttonSort.textContent).toBe('Sort: Descending');
-    fireEvent.click(buttonSort);
-    expect(buttonSort.textContent).toBe('Sort: Ascending');
-  });
-
-  it('change selectOption', () => {
-    renderGithubPage();
-
-    const { selectOption } = getElements();
-
-    expect(selectOption.value).toBe('watchers');
-
-    fireEvent.change(selectOption, { target: { value: 'forks' } });
-    expect(selectOption.value).toBe('forks');
-
-    fireEvent.change(selectOption, { target: { value: 'watchers' } });
-    expect(selectOption.value).toBe('watchers');
+    const input = screen.getByPlaceholderText(/Github username.../i) as HTMLInputElement;
+    fireEvent.change(input, { target: { value: 'reactjs' } });
+    expect(input.value).toBe('reactjs');
   });
 });

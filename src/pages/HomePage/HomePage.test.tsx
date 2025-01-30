@@ -1,8 +1,9 @@
 import React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { store } from '../../store/store';
 import { HomePage } from './HomePage';
+import { technologies } from './const';
+import { store } from '../../store/store';
 
 const renderHomePage = () => {
   render(
@@ -12,71 +13,31 @@ const renderHomePage = () => {
   );
 };
 
-const getElements = () => {
-  const liHTMLElement = screen.getByText('HTML');
-  const liCSSElement = screen.getByText('CSS');
-  const liJSElement = screen.getByText('JavaScript');
-  const titleElement = screen.getByText('Learn more about');
-  const titleSpanElement = screen.getByText('Technologies');
-  const descriptionJSElement = screen.queryByText(
-    'JavaScript (JS) is a lightweight interpreted (or just-in-time compiled) programming language with first-class functions.',
-  );
-  const descriptionHTMLElement = screen.queryByText(
-    'HTML (HyperText Markup Language) is the most basic building block of the Web. It defines the meaning and structure of web content.',
-  );
-  const descriptionLinkElement = screen.queryByText('Learn More');
-  return {
-    liHTMLElement,
-    liCSSElement,
-    liJSElement,
-    titleElement,
-    titleSpanElement,
-    descriptionJSElement,
-    descriptionHTMLElement,
-    descriptionLinkElement,
-  };
-};
-
 describe('HomePage', () => {
   it('renders HomePage', () => {
+    // renders the title of Page
     renderHomePage();
-
-    const {
-      liHTMLElement,
-      liCSSElement,
-      liJSElement,
-      titleElement,
-      titleSpanElement,
-    } = getElements();
-
-    expect(liHTMLElement).toBeInTheDocument();
-    expect(liCSSElement).toBeInTheDocument();
-    expect(liJSElement).toBeInTheDocument();
-    expect(titleElement).toBeInTheDocument();
-    expect(titleSpanElement).toBeInTheDocument();
+    expect(screen.getByText(/Learn more about/i)).toBeInTheDocument();
+    expect(screen.getByText(/Technologies/i)).toBeInTheDocument();
+    // renders list of technologies
+    technologies.forEach(technology => {
+      expect(screen.getByText(technology.title)).toBeInTheDocument();
+    });
   });
 
-  it('does not show a description before clicking on a technology', () => {
+  it('select a technology and displays description and link', () => {
     renderHomePage();
-    const { descriptionHTMLElement, descriptionLinkElement } = getElements();
-
-    expect(descriptionHTMLElement).not.toBeInTheDocument();
-    expect(descriptionLinkElement).not.toBeInTheDocument();
-  });
-
-  it('displays the description and link after clicking a technology', () => {
-    renderHomePage();
-
-    const { liHTMLElement, liJSElement } = getElements();
-
-    fireEvent.click(liHTMLElement);
-    const { descriptionHTMLElement, descriptionLinkElement } = getElements();
-    expect(descriptionHTMLElement).toBeInTheDocument();
-    expect(descriptionLinkElement).toBeInTheDocument();
-
-    fireEvent.click(liJSElement);
-    const { descriptionJSElement } = getElements();
-    expect(descriptionJSElement).toBeInTheDocument();
-    expect(descriptionLinkElement).toBeInTheDocument();
+    // click to 1 - technology
+    const firstTechnology = technologies[0];
+    const firstTechnologyButton = screen.getByText(firstTechnology.title);
+    fireEvent.click(firstTechnologyButton);
+    expect(screen.getByText(firstTechnology.description)).toBeInTheDocument();
+    expect(screen.getByRole('link')).toBeInTheDocument();
+    // click to 5 - technology
+    const fifthTechnology = technologies[4];
+    const fifthTechnologyButton = screen.getByText(fifthTechnology.title);
+    fireEvent.click(fifthTechnologyButton);
+    expect(screen.getByText(fifthTechnology.description)).toBeInTheDocument();
+    expect(screen.getByRole('link')).toBeInTheDocument();
   });
 });

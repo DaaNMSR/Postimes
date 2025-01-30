@@ -1,5 +1,5 @@
 import React from 'react';
-import { useActions } from '../../../../../../hooks/actions';
+import { useActions } from '../../../../../../store/actions';
 import Button from '../../../../../../components/UI/Button';
 
 interface TodoItemProps {

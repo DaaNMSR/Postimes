@@ -26,14 +26,12 @@ export const technologies: Technology[] = [
   },
   {
     title: 'Redux',
-    description:
-      'A JS library for predictable and maintainable global state management.',
+    description: 'A JS library for predictable and maintainable global state management.',
     link: 'https://redux.js.org/',
   },
   {
     title: 'Jest',
-    description:
-      'Jest is a delightful JavaScript Testing Framework with a focus on simplicity.',
+    description: 'Jest is a delightful JavaScript Testing Framework with a focus on simplicity.',
     link: 'https://jestjs.io/',
   },
   {

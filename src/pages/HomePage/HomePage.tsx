@@ -1,7 +1,7 @@
 import React from 'react';
 import { Technology } from '../../models/models';
 import { RootState, useAppSelector } from '../../store/store';
-import { useActions } from '../../hooks/actions';
+import { useActions } from '../../store/actions';
 import { technologies } from './const';
 import { TechnologyDescription } from './components/TechnologyDescription/TechnologyDescription';
 import { TechnologyItems } from './components/TechnologyItems/TechnologyItems';
@@ -27,9 +27,7 @@ export const HomePage: React.FC = () => {
           handleSelectTechnology={handleSelectTechnology}
         />
       }
-      {selectedTechnology && (
-        <TechnologyDescription selectedTechnology={selectedTechnology} />
-      )}
+      {selectedTechnology && <TechnologyDescription selectedTechnology={selectedTechnology} />}
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useActions } from '../../../../hooks/actions';
+import { useActions } from '../../../../store/actions';
 import Input from '../../../../components/UI/Input';
 import Button from '../../../../components/UI/Button';
 

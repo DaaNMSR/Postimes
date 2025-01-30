@@ -1,5 +1,5 @@
 import React from 'react';
-import { useActions } from '../../hooks/actions';
+import { useActions } from '../../store/actions';
 import { FavoritesTable } from './components/FavoritesTable/FavoritesTable';
 import { NoFavorites } from './components/NoFavorites/NoFavorites';
 import { useAppSelector } from '../../store/store';

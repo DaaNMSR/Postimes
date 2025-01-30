@@ -8,7 +8,10 @@ interface CharacterModalProps {
   handleCloseModal: () => void;
 }
 
-export const CharacterModal: React.FC<CharacterModalProps> = ({character, handleCloseModal}) => {
+export const CharacterModal: React.FC<CharacterModalProps> = ({
+  character,
+  handleCloseModal,
+}) => {
   return (
     <div
       className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
@@ -16,7 +19,7 @@ export const CharacterModal: React.FC<CharacterModalProps> = ({character, handle
     >
       <div
         className="bg-white p-6 rounded-md shadow-lg max-w-[400px] w-full relative"
-        onClick={(e) => e.stopPropagation()}
+        onClick={e => e.stopPropagation()}
       >
         <Button
           onClick={handleCloseModal}
@@ -24,7 +27,7 @@ export const CharacterModal: React.FC<CharacterModalProps> = ({character, handle
         >
           ✕
         </Button>
-        <CharacterDetails character={character}/>
+        <CharacterDetails character={character} />
       </div>
     </div>
   );

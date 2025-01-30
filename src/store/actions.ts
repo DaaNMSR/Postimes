@@ -1,9 +1,9 @@
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from '@reduxjs/toolkit';
-import { githubAction } from '../store/slices/github.slice';
-import { todosActions } from '../store/slices/todo.slice';
-import { homeActions } from '../store/slices/home.slice';
-import { charactersActions } from '../store/slices/rickandmorty.slice';
+import { githubAction } from './slices/github.slice';
+import { todosActions } from './slices/todo.slice';
+import { homeActions } from './slices/home.slice';
+import { charactersActions } from './slices/rickandmorty.slice';
 
 const actions = {
   ...githubAction,

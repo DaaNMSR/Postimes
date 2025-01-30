@@ -5,35 +5,13 @@ import { FavoritesPage } from './FavoritesPage';
 import { configureStore } from '@reduxjs/toolkit';
 import { githubReducer } from '../../store/slices/github.slice';
 
-const getElements = () => {
-  const linkElement = screen.queryByRole('link', {
-    name: 'To Github search...',
-  }) as HTMLLinkElement;
-  const paragraphEmptyFavorites = screen.queryByText(
-    'No favourites.',
-  ) as HTMLParagraphElement;
-  const paragraphHasFavorites = screen.queryByText(
-    'My favorites',
-  ) as HTMLParagraphElement;
-  const listItems = screen.queryAllByRole('listitem');
-  const removeButton = screen.queryAllByRole('button');
-  return {
-    linkElement,
-    paragraphEmptyFavorites,
-    paragraphHasFavorites,
-    listItems,
-    removeButton,
-  };
-};
-
-const renderWithStore = (initialState: { github: { favorites: string[] } }) => {
+const renderFavoritesPage = (initialState: { github: { favorites: string[] } }) => {
   const testStore = configureStore({
     reducer: {
       github: githubReducer,
     },
     preloadedState: initialState,
   });
-
   return render(
     <Provider store={testStore}>
       <FavoritesPage />
@@ -41,55 +19,52 @@ const renderWithStore = (initialState: { github: { favorites: string[] } }) => {
   );
 };
 
+const favorites = [
+  'https://github.com/DaaNMSR/SINDFIS.fy',
+  'https://github.com/DaaNMSR/aksimym.ru',
+  'https://github.com/DaaNMSR/Postimes',
+];
+
 describe('FavoritesPage component', () => {
   it('renders FavoritesPage', () => {
-    renderWithStore({ github: { favorites: [] } });
-
-    const { linkElement, paragraphEmptyFavorites } = getElements();
-
-    expect(paragraphEmptyFavorites).toBeInTheDocument();
-    expect(linkElement).toBeInTheDocument();
-    expect(linkElement).toHaveAttribute('href', '/githubsearch');
+    renderFavoritesPage({ github: { favorites: [] } });
+    const link = screen.getByText('To Github search...');
+    const title = screen.getByText('No favorites.');
+    expect(link).toBeInTheDocument();
+    expect(link).toHaveAttribute('href', '/githubsearch');
+    expect(title).toBeInTheDocument();
   });
+  it('display items when we have favorites, and does not display link and titleNoFavorites', () => {
+    renderFavoritesPage({ github: { favorites } });
+    const link = screen.queryByText('To Github search...');
+    const titleNoFavorites = screen.queryByText('No favorites.');
+    const titleMyFavorites = screen.getByText('My favorites');
+    const listItems = screen.queryAllByRole('listitem');
 
-  it('display items when we have favorites, and does not display link and - No favorites', () => {
-    const favorites = [
-      'https://github.com/DaaNMSR/SINDFIS.fy',
-      'https://github.com/DaaNMSR/aksimym.ru',
-    ];
-    renderWithStore({ github: { favorites } });
-
-    const {
-      linkElement,
-      paragraphEmptyFavorites,
-      paragraphHasFavorites,
-      listItems,
-    } = getElements();
-
-    expect(paragraphEmptyFavorites).not.toBeInTheDocument();
-    expect(linkElement).not.toBeInTheDocument();
-    expect(paragraphHasFavorites).toBeInTheDocument();
+    expect(titleNoFavorites).not.toBeInTheDocument();
+    expect(link).not.toBeInTheDocument();
+    expect(titleMyFavorites).toBeInTheDocument();
     expect(listItems).toHaveLength(favorites.length);
   });
 
-  it('removes favorite item, then remove all items by clicked removeButton', () => {
-    const favorites = [
-      'https://github.com/DaaNMSR/SINDFIS.fy',
-      'https://github.com/DaaNMSR/aksimym.ru',
-    ];
-    renderWithStore({ github: { favorites } });
-
-    const { listItems, removeButton } = getElements();
+  it('removes favorite items', () => {
+    renderFavoritesPage({ github: { favorites } });
+    const listItems = screen.queryAllByRole('listitem');
+    const removeButton = screen.queryAllByRole('button');
 
     expect(listItems).toHaveLength(favorites.length);
     expect(removeButton).toHaveLength(favorites.length);
-
+    // Remove first element
     fireEvent.click(removeButton[0]);
     const updatedListItems = screen.queryAllByRole('listitem');
     expect(updatedListItems).toHaveLength(favorites.length - 1);
-
+    // Remove second element
     fireEvent.click(removeButton[1]);
     const updatedListItems2 = screen.queryAllByRole('listitem');
-    expect(updatedListItems2).toHaveLength(0);
+    expect(updatedListItems2).toHaveLength(favorites.length - 2);
+    // Remove last element
+    fireEvent.click(removeButton[favorites.length - 1]);
+    const updatedListItems3 = screen.queryAllByRole('listitem');
+    expect(updatedListItems3).toHaveLength(0);
   });
 });
