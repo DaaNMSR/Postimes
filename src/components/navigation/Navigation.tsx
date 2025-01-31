@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export const Navigation = () => {
   return (
-    <nav className="flex justify-between items-center h-12 px-5 bg-gray-500 text-white">
+    <nav className="flex justify-between items-center h-12 px-5 bg-gray-600 text-white">
       <Link to="/" className="font-bold hover:opacity-70 hover:cursor-default tracking-widest">
         Pastimes
       </Link>
