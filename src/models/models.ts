@@ -35,7 +35,7 @@ export interface IRepo {
   private: boolean;
   owner: IOwner;
   html_url: string;
-  description: any;
+  description: string | null;
   fork: boolean;
   url: string;
   forks_url: string;
@@ -81,7 +81,7 @@ export interface IRepo {
   ssh_url: string;
   clone_url: string;
   svn_url: string;
-  homepage: any;
+  homepage: string | null;
   size: number;
   stargazers_count: number;
   watchers_count: number;
@@ -93,15 +93,15 @@ export interface IRepo {
   has_pages: boolean;
   has_discussions: boolean;
   forks_count: number;
-  mirror_url: any;
+  mirror_url: string | null;
   archived: boolean;
   disabled: boolean;
   open_issues_count: number;
-  license: any;
+  license: string | null;
   allow_forking: boolean;
   is_template: boolean;
   web_commit_signoff_required: boolean;
-  topics: any[];
+  topics: string[];
   visibility: string;
   forks: number;
   open_issues: number;
@@ -156,7 +156,7 @@ export interface Info {
   count: number;
   pages: number;
   next: string | null;
-  prev: any | null;
+  prev: null;
 }
 
 export interface Character {

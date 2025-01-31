@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../../../../components/UI/Button';
+import Button from '../../../../components/UI/Button/Button';
 import { Character } from '../../../../models/models';
 import { CharacterDetails } from './components/CharacterDetails/CharacterDetails';
 
@@ -8,10 +8,7 @@ interface CharacterModalProps {
   handleCloseModal: () => void;
 }
 
-export const CharacterModal: React.FC<CharacterModalProps> = ({
-  character,
-  handleCloseModal,
-}) => {
+export const CharacterModal: React.FC<CharacterModalProps> = ({ character, handleCloseModal }) => {
   return (
     <div
       className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"

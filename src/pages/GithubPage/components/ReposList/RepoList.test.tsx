@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { ReposList } from './ReposList';
-import { IRepo } from '../../../../models/models';
 
 describe('RepoList Component', () => {
   it('renders loading state', () => {

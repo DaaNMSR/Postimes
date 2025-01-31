@@ -7,10 +7,7 @@ interface ReposListProps {
   repos: IRepo[] | undefined;
 }
 
-export const ReposList: React.FC<ReposListProps> = ({
-  areReposLoading,
-  repos,
-}) => {
+export const ReposList: React.FC<ReposListProps> = ({ areReposLoading, repos }) => {
   return (
     <div className="repos">
       {areReposLoading && <p className="text-center">Loading...</p>}

@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import {
-  useSearchUsersQuery,
-  useLazyGetUserReposQuery,
-} from '../../store/api/github.api';
+import { useSearchUsersQuery, useLazyGetUserReposQuery } from '../../store/api/github.api';
 import { useDebounce } from '../../hooks/debounce';
 import { SortBy, SortOrder } from '../../models/models';
-import Input from '../../components/UI/Input';
-import { Dropdown } from './components/Dropdown/Dropdown';
+import Input from '../../components/UI/Input/Input';
+import { Dropdown } from '../../components/Dropdown/Dropdown';
 import { SortOptions } from './components/SortOptions/SortOptions';
 import { ReposList } from './components/ReposList/ReposList';
 
@@ -19,22 +16,19 @@ export const GithubPage = () => {
   const { isLoading, isError, data } = useSearchUsersQuery(debounced, {
     skip: debounced.length < 2,
   });
-  const [fetchRepos, { isLoading: areReposLoading, data: repos }] =
-    useLazyGetUserReposQuery();
+  const [fetchRepos, { isLoading: areReposLoading, data: repos }] = useLazyGetUserReposQuery();
   const handleOpenRepos = (username: string) => {
     fetchRepos(username);
     setDropdown(false);
   };
   const sortedRepos = repos
     ? [...repos].sort((a, b) =>
-        sortOrder === SortOrder.ASC
-          ? a[sortBy] - b[sortBy]
-          : b[sortBy] - a[sortBy],
+        sortOrder === SortOrder.ASC ? a[sortBy] - b[sortBy] : b[sortBy] - a[sortBy],
       )
     : [];
 
   useEffect(() => {
-    setDropdown(debounced.length > 2 && data?.length! > 0);
+    setDropdown(debounced.length > 2 && (data?.length ?? 0) > 0);
   }, [debounced, data]);
 
   return (

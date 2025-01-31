@@ -6,9 +6,7 @@ interface CharacterDetailsProps {
   character: Character;
 }
 
-export const CharacterDetails: React.FC<CharacterDetailsProps> = ({
-  character,
-}) => {
+export const CharacterDetails: React.FC<CharacterDetailsProps> = ({ character }) => {
   return (
     <>
       <img
@@ -20,14 +18,8 @@ export const CharacterDetails: React.FC<CharacterDetailsProps> = ({
       <CharacterDetailsItem character={character.status} detail="Status:" />
       <CharacterDetailsItem character={character.species} detail="Species:" />
       <CharacterDetailsItem character={character.gender} detail="Gender:" />
-      <CharacterDetailsItem
-        character={character.origin.name}
-        detail="Origin:"
-      />
-      <CharacterDetailsItem
-        character={character.location.name}
-        detail="Location:"
-      />
+      <CharacterDetailsItem character={character.origin.name} detail="Origin:" />
+      <CharacterDetailsItem character={character.location.name} detail="Location:" />
     </>
   );
 };

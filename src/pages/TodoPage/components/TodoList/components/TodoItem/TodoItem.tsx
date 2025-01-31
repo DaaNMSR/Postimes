@@ -1,6 +1,6 @@
 import React from 'react';
 import { useActions } from '../../../../../../store/actions';
-import Button from '../../../../../../components/UI/Button';
+import Button from '../../../../../../components/UI/Button/Button';
 
 interface TodoItemProps {
   id: string;

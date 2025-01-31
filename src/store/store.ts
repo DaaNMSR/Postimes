@@ -15,9 +15,7 @@ export const store = configureStore({
     [rickandmortyApi.reducerPath]: rickandmortyApi.reducer,
   },
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware()
-      .concat(githubApi.middleware)
-      .concat(rickandmortyApi.middleware),
+    getDefaultMiddleware().concat(githubApi.middleware).concat(rickandmortyApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

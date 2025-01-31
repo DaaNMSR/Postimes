@@ -18,9 +18,7 @@ export const SortOptions: React.FC<SortControlsProps> = ({
     <div className="flex justify-between mb-2">
       <button
         onClick={() =>
-          setSortOrder(prev =>
-            prev === SortOrder.ASC ? SortOrder.DESC : SortOrder.ASC,
-          )
+          setSortOrder(prev => (prev === SortOrder.ASC ? SortOrder.DESC : SortOrder.ASC))
         }
         className="py-1 px-3 bg-gray-200 border rounded hover:bg-gray-300 transition"
       >

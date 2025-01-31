@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Button from '../../../../../../components/UI/Button';
+import Button from '../../../../../../components/UI/Button/Button';
 import { useActions } from '../../../../../../store/actions';
 import { IRepo } from '../../../../../../models/models';
 import { useAppSelector } from '../../../../../../store/store';

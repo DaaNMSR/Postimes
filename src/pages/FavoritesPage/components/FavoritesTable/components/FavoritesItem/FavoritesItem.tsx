@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../../../../../../components/UI/Button';
+import Button from '../../../../../../components/UI/Button/Button';
 
 interface FavoriteItemProps {
   favorite: string;
@@ -7,11 +7,7 @@ interface FavoriteItemProps {
   onClick: (favorite: string) => void;
 }
 
-export const FavoriteItem: React.FC<FavoriteItemProps> = ({
-  favorite,
-  index,
-  onClick,
-}) => {
+export const FavoriteItem: React.FC<FavoriteItemProps> = ({ favorite, index, onClick }) => {
   return (
     <li
       key={favorite}
