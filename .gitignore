@@ -19,8 +19,3 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-#configs
-.prettierrc
-eslint.config.mjs
-package-lock.json
