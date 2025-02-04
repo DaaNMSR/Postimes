@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useGetCharactersQuery } from '../../store/api/rickandmorty.api';
 import Input from '../../components/UI/Input/Input';
 import { Character } from '../../models/models';
@@ -12,17 +12,30 @@ export const RickAndMortyPage = () => {
   const { data, error, isLoading } = useGetCharactersQuery(debounced);
   const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
+
   const handleMoreInfo = (character: Character) => {
     setSelectedCharacter(character);
     setIsModalOpen(true);
   };
+
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setSelectedCharacter(null);
   };
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') handleCloseModal();
+    };
+
+    if (isModalOpen) document.addEventListener('keydown', handleKeyDown);
+
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isModalOpen]);
 
   return (
     <div className="flex justify-center">
