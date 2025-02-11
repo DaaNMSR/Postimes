@@ -18,10 +18,7 @@ export const CharacterModal: React.FC<CharacterModalProps> = ({ character, handl
         className="bg-white p-6 rounded-md shadow-lg max-w-[400px] w-full relative"
         onClick={e => e.stopPropagation()}
       >
-        <Button
-          onClick={handleCloseModal}
-          className="absolute top-2 right-3 text-gray-500 hover:text-black"
-        >
+        <Button onClick={handleCloseModal} className="absolute top-2 right-3 text-gray-500 hover:text-black">
           ✕
         </Button>
         <CharacterDetails character={character} />

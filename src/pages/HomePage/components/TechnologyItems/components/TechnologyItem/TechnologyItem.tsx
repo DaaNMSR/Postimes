@@ -12,11 +12,12 @@ export const TechnologyItem: React.FC<TechnologyItemProps> = ({
   selectedTechnology,
   handleSelectTechnology,
 }) => {
+  const isSelected = selectedTechnology?.title === technology.title;
   return (
     <li
-      className={`mt-3 mb-1 border w-[200px] rounded 
+      className={`p-5 mt-3 mb-1 border w-[50%] rounded text-[15px] transition-all 
                   ${
-                    selectedTechnology?.title === technology.title
+                    isSelected
                       ? 'text-white cursor-default bg-gray-400'
                       : 'text-black hover:opacity-70 cursor-pointer'
                   }`}

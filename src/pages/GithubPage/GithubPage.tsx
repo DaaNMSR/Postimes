@@ -22,13 +22,12 @@ export const GithubPage = () => {
     setDropdown(false);
   };
   const sortedRepos = repos
-    ? [...repos].sort((a, b) =>
-        sortOrder === SortOrder.ASC ? a[sortBy] - b[sortBy] : b[sortBy] - a[sortBy],
-      )
+    ? [...repos].sort((a, b) => (sortOrder === SortOrder.ASC ? a[sortBy] - b[sortBy] : b[sortBy] - a[sortBy]))
     : [];
 
   useEffect(() => {
-    setDropdown(debounced.length > 2 && (data?.length ?? 0) > 0);
+    const isOpen = debounced.length > 2 && (data?.length ?? 0) > 0;
+    setDropdown(isOpen);
   }, [debounced, data]);
 
   return (
@@ -42,12 +41,7 @@ export const GithubPage = () => {
           onChange={e => setSearch(e.target.value)}
         />
         {dropdown && (
-          <Dropdown
-            data={data}
-            isLoading={isLoading}
-            isError={isError}
-            openRepos={handleOpenRepos}
-          />
+          <Dropdown data={data} isLoading={isLoading} isError={isError} openRepos={handleOpenRepos} />
         )}
         {
           <SortOptions

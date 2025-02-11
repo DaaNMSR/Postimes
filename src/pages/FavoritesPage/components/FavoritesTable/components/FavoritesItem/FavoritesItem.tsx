@@ -9,10 +9,7 @@ interface FavoriteItemProps {
 
 export const FavoriteItem: React.FC<FavoriteItemProps> = ({ favorite, index, onClick }) => {
   return (
-    <li
-      key={favorite}
-      className="relative py-2 px-4 transition-colors border-2 border-gray-700 mb-2"
-    >
+    <li key={favorite} className="relative py-2 px-4 transition-colors border-2 border-gray-700 mb-2">
       <span className="font-bold mr-2">{index + 1}.</span>
       <a
         href={favorite}

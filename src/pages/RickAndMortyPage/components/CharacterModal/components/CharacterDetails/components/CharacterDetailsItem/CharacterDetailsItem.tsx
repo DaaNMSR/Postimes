@@ -5,10 +5,7 @@ interface CharacterDetailsItemProps {
   detail: string;
 }
 
-export const CharacterDetailsItem: React.FC<CharacterDetailsItemProps> = ({
-  character,
-  detail,
-}) => {
+export const CharacterDetailsItem: React.FC<CharacterDetailsItemProps> = ({ character, detail }) => {
   return (
     <p className="text-center">
       <strong>{detail}</strong> {character}

@@ -8,15 +8,13 @@ import { TechnologyItems } from './components/TechnologyItems/TechnologyItems';
 
 export const HomePage: React.FC = () => {
   const { selectTechnology } = useActions();
-  const selectedTechnology = useAppSelector(
-    (state: RootState) => state.technologies.selectedTechnology,
-  );
+  const selectedTechnology = useAppSelector((state: RootState) => state.technologies.selectedTechnology);
   const handleSelectTechnology = (technology: Technology) => {
     selectTechnology(technology);
   };
   return (
-    <div className="text-center font-medium mt-6 text-[17px]">
-      <h1>
+    <div className="text-center font-medium mt-6">
+      <h1 className="text-[20px] mb-4">
         <span className="text-gray-500">Learn more about </span>
         Technologies
       </h1>

@@ -5,9 +5,7 @@ interface TechnologyDescriptionProps {
   selectedTechnology?: Technology;
 }
 
-export const TechnologyDescription: React.FC<TechnologyDescriptionProps> = ({
-  selectedTechnology,
-}) => {
+export const TechnologyDescription: React.FC<TechnologyDescriptionProps> = ({ selectedTechnology }) => {
   return (
     <div className="mx-auto mt-6 p-4 border rounded shadow bg-gray-100 text-gray-800 w-[400px]">
       {selectedTechnology?.description}

@@ -14,15 +14,17 @@ export const TechnologyItems: React.FC<TechnologyItemsProps> = ({
   handleSelectTechnology,
 }) => {
   return (
-    <ul className="flex flex-col items-center mt-4">
-      {technologies.map(technology => (
-        <TechnologyItem
-          key={technology.title}
-          selectedTechnology={selectedTechnology}
-          handleSelectTechnology={handleSelectTechnology}
-          technology={technology}
-        />
-      ))}
-    </ul>
+    <div className="flex justify-center">
+      <ul className="grid grid-cols-2 justify-items-center w-[50%]">
+        {technologies.map(technology => (
+          <TechnologyItem
+            key={technology.title}
+            selectedTechnology={selectedTechnology}
+            handleSelectTechnology={handleSelectTechnology}
+            technology={technology}
+          />
+        ))}
+      </ul>
+    </div>
   );
 };
