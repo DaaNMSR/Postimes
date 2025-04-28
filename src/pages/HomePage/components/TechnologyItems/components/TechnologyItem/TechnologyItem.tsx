@@ -15,7 +15,7 @@ export const TechnologyItem: React.FC<TechnologyItemProps> = ({
   const isSelected = selectedTechnology?.title === technology.title;
   return (
     <li
-      className={`p-5 mt-3 mb-1 border w-[50%] rounded text-[15px] transition-all 
+      className={`p-1 mt-2 mb-1 border w-[50%] rounded text-[15px] transition-all 
                   ${
                     isSelected
                       ? 'text-white cursor-default bg-gray-400'

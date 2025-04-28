@@ -14,8 +14,8 @@ export const TechnologyItems: React.FC<TechnologyItemsProps> = ({
   handleSelectTechnology,
 }) => {
   return (
-    <div className="flex justify-center">
-      <ul className="grid grid-cols-2 justify-items-center w-[50%]">
+    <div className="flex justify-center mb-2">
+      <ul className="grid grid-cols-1 justify-items-center w-[50%]">
         {technologies.map(technology => (
           <TechnologyItem
             key={technology.title}

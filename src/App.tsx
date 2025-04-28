@@ -12,16 +12,14 @@ import { RickAndMortyPage } from './pages/RickAndMortyPage/RickAndMortyPage';
 export const App = () => {
   return (
     <Provider store={store}>
-      <>
-        <Navigation />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/todo" element={<TodoPage />} />
-          <Route path="/githubsearch" element={<GithubPage />} />
-          <Route path="/favorites" element={<FavoritesPage />} />
-          <Route path="/rickandmorty" element={<RickAndMortyPage />} />
-        </Routes>
-      </>
+      <Navigation />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/todo" element={<TodoPage />} />
+        <Route path="/githubsearch" element={<GithubPage />} />
+        <Route path="/favorites" element={<FavoritesPage />} />
+        <Route path="/rickandmorty" element={<RickAndMortyPage />} />
+      </Routes>
     </Provider>
   );
 };

@@ -1,7 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export const HomePageNavigation = () => {
+interface HomePageNavigationProps {
+  fn: () => void;
+}
+
+export const HomePageNavigation: React.FC<HomePageNavigationProps> = ({ fn }) => {
   return (
     <>
       <p className="text-center font-bold text-xl mt-8 text-blue-400 mb-2">
@@ -20,6 +24,15 @@ export const HomePageNavigation = () => {
         <Link to="/rickandmorty" rel="noopener noreferrer" className="hover:text-blue-700">
           <span className="font-bold">4.</span> Search for characters from `rick and morty`
         </Link>
+      </div>
+      <div className="flex justify-center mt-8">
+        <button
+          onClick={fn}
+          className="text-[16px] text-center font-medium mt-6 rounded-xl bg-slate-100 hover:bg-slate-200 p-1 transition-all"
+        >
+          <span className="text-gray-500">Learn more about </span>
+          Technologies
+        </button>
       </div>
     </>
   );
